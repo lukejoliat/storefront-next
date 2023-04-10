@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import clsx from "clsx";
 
 export default function Layout({
@@ -7,7 +8,7 @@ export default function Layout({
 }) {
   return (
     <section>
-      <div className={clsx('p-4')}>These / are / the / breadcrumbs...</div>
+      <Breadcrumbs />
       {children}
     </section>
   );
