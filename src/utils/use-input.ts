@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useInput = (initialValue: string | number | undefined) => {
+export const useInput = <T>(initialValue: T | undefined) => {
     const [value, setValue] = useState(initialValue);
 
     const handleChange = (event: any) => {
@@ -9,6 +9,11 @@ export const useInput = (initialValue: string | number | undefined) => {
 
     return {
         value,
-        onChange: handleChange
+        onChange: handleChange,
+        type: typeof initialValue === 'string' ? 'text' : 'number'
+    } as {
+        value: T,
+        onChange: (event: any) => void,
+        type: string
     };
 };

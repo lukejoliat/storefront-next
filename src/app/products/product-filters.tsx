@@ -17,9 +17,9 @@ export const ProductFilters = () => {
     const searchParams = useSearchParams();
 
     // TODO: refactor to a form
-    const priceFrom = useInput(searchParams.get('price-from') || undefined)
-    const priceTo = useInput(searchParams.get('price-to') || undefined)
-    const name = useInput(searchParams.get('name') || undefined)
+    const priceFrom = useInput(searchParams.get(Filters.PRICE_FROM) || undefined)
+    const priceTo = useInput(searchParams.get(Filters.PRICE_TO) || undefined)
+    const name = useInput(searchParams.get(Filters.NAME) || '')
 
     const setQueryString = useCallback((values: Record<string, unknown>) => createQueryString(values, searchParams, { deleteNulls: true }),
         [searchParams],
@@ -27,48 +27,44 @@ export const ProductFilters = () => {
 
     const handleSubmit = () => {
         router.push(`${PATHS.PRODUCTS}?${setQueryString({
-            ['price-from']: priceFrom.value,
-            ['price-to']: priceTo.value,
-            name: name.value
+            [Filters.PRICE_FROM]: priceFrom.value,
+            [Filters.PRICE_TO]: priceTo.value,
+            [Filters.NAME]: name.value
         })}`)
     }
 
 
     return (
-        <div>
+        <form>
             <ul>
                 {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
                 <li>
                     <label htmlFor="name">Name</label>
-                    <input type="text" id="name" name="name" {...name} className='text-rose-500' />
+                    <ProductFilterInput {...name} name={Filters.NAME} />
+
                 </li>
                 <li>
                     <label htmlFor="price-from">Price From</label>
-                    <input type="number" id="price-from" name="price-from" {...priceFrom} className='text-rose-500' />
+                    <ProductFilterInput {...priceFrom} name={Filters.PRICE_FROM} />
                 </li>
                 <li>
                     <label htmlFor="price-to">Price To</label>
-                    <input type="number" id="price-to" name="price-to" {...priceTo} className='text-rose-500' />
-                </li>
-                <li>
-                    <ProductFilterInput label='Type' type="text" name="type" />
+                    <ProductFilterInput {...priceTo} name={Filters.PRICE_TO} />
                 </li>
             </ul>
             <button type="button" onClick={handleSubmit}>Filter</button>
-            <button type="button" onClick={() => router.push(`${PATHS.PRODUCTS}`)}>Clear Filters</button>
-        </div>
+            <button type="button" onClick={() => router.push(`${PATHS.PRODUCTS}`)}>Clear</button>
+        </form>
     )
 }
 
 // TODO: evaluate the usefullness of this
-const ProductFilterInput = ({ name, type, label }: { name: string, type: string, label: string }) => {
-    const searchParams = useSearchParams();
-    const input = useInput(searchParams.get(name) || undefined);
+const ProductFilterInput = ({ name, type = 'text', value, onChange }: { name: string, type: string, value: string | number | undefined, onChange: (event: any) => void }) => {
 
     return (
         <>
-            <label htmlFor="type">{label}</label>
-            <input type={type} id={name} name={name} {...input} className='text-rose-500' />
+            {/* <label htmlFor="type">{label}</label> */}
+            <input type={type} id={name} name={name} value={value} onChange={onChange} className='text-rose-500' />
         </>
     )
 }

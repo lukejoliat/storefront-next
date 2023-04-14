@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { Breadcrumbs, Crumb } from "@/components/breadcrumbs";
 import clsx from "clsx";
 
 export default function Layout({
@@ -6,9 +6,20 @@ export default function Layout({
 }: {
   children: React.ReactNode,
 }) {
+  const crumbs: Crumb[] = [
+    {
+      label: 'Home',
+      link: '/'
+    },
+    {
+      label: 'Products',
+      link: '/products'
+    }
+  ]
+
   return (
     <section>
-      <Breadcrumbs />
+      <Breadcrumbs crumbs={crumbs} />
       {children}
     </section>
   );

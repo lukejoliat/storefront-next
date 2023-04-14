@@ -8,7 +8,7 @@ export function Nav() {
             <ul className="flex">
                 <li><NavLink href={PATHS.HOME}>Home</NavLink></li>
                 <li><NavLink href={PATHS.PRODUCTS}>Products</NavLink></li>
-                <li>New Arrivals</li>
+                <li><NavLink href={PATHS.NEW_ARRIVALS}>New Arrivals</NavLink></li>
                 <li>Featured</li>
             </ul>
         </nav>

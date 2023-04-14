@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { PATHS } from "../page"
 
+import Link from "next/link";
+import { ENDPOINT as PRODUCTS } from "./api/route";
 
 export type Product = {
     id: string;
@@ -10,16 +10,31 @@ export type Product = {
     photos: any;
 }
 
-export const ProductList = async () => {
+export enum Filters {
+    NAME = 'name',
+    PRICE_FROM = 'price-from',
+    PRICE_TO = 'price-to'
+}
+
+export const ProductList = async ({ searchParams }: { searchParams: Record<string, string | undefined> }) => {
+
     // TODO: refactor for a method that returns basepath
-    const products = await fetch('http://localhost:3000/products/api').then(res => res.json()) as Product[]
+    const products = await fetch(PRODUCTS).then(res => res.json()) as Product[]
+
+    const filteredProducts = products.filter(p => {
+        // TODO: make this dynamic
+        return p.title.includes(searchParams.name || '')
+            && p.price >= parseInt(searchParams[Filters.PRICE_FROM] || '0')
+            && p.price <= parseInt(searchParams[Filters.PRICE_TO] || '100000000')
+    })
+
     return (
         <>
-            <div>Product List.</div>
-            <div>
+            <div>Product List:</div>
+            <div className="flex">
                 {/* TODO: refactor to use component for product list item */}
                 {
-                    products.map(p => (
+                    filteredProducts.map(p => (
                         <div>
 
                             <Link href={`/products/${p.id}`}>{p.title}</Link>

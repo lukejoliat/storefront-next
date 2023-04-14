@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { Product } from "../product-list";
 import { randomUUID } from "crypto";
 import { log } from "console";
+import { basePath } from "@/utils/base-path";
 
-
+export const ENDPOINT = `${basePath()}/products/api`
 
 export const products: Product[] = [
     {
@@ -25,9 +26,7 @@ export const products: Product[] = [
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
-    console.log({ id });
-    console.log({ products })
-    await new Promise((resolve) => setTimeout(resolve, Number(5000)));
+    await new Promise((resolve) => setTimeout(resolve, Number(2000)));
 
     if (id) return NextResponse.json(products.find(p => p.id === id) || {})
     return NextResponse.json(products)
