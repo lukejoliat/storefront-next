@@ -1,12 +1,15 @@
-
 import Link from "next/link";
 import { ENDPOINT as PRODUCTS } from "./api/route";
+import { Card } from "@/components/card";
+import { PATHS } from "../page";
+import { ProductCard } from "./product-card";
 
 export type Product = {
     id: string;
     title: string;
     price: number;
     description: string;
+    photo: string;
     photos: any;
 }
 
@@ -30,18 +33,11 @@ export const ProductList = async ({ searchParams }: { searchParams: Record<strin
 
     return (
         <>
-            <div>Product List:</div>
             <div className="flex">
                 {/* TODO: refactor to use component for product list item */}
                 {
                     filteredProducts.map(p => (
-                        <div>
-
-                            <Link href={`/products/${p.id}`}>{p.title}</Link>
-                            <p>
-                                {p.description}
-                            </p>
-                        </div>
+                        <ProductCard product={p} />
                     ))
                 }
             </div>

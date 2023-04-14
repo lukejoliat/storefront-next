@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 import { log } from "console";
 import { basePath } from "@/utils/base-path";
 
-export const ENDPOINT = `${basePath()}/products/api`
+export const ENDPOINT = `${basePath()}/products/api` as const
 
 export const products: Product[] = [
     {
@@ -12,6 +12,7 @@ export const products: Product[] = [
         title: 'Megatron',
         description: 'Leader of the decepticons',
         price: 50.00,
+        photo: '/megatron.jpeg',
         photos: []
     },
     {
@@ -19,6 +20,7 @@ export const products: Product[] = [
         title: 'Optimus Prime',
         description: 'Leader of the Autobots',
         price: 55.00,
+        photo: '/optimus.jpeg',
         photos: []
     }
 ]

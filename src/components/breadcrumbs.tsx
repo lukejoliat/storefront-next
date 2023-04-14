@@ -16,10 +16,14 @@ type Props = {
 export const Breadcrumbs: FC<Props> = ({ crumbs = [] }) => {
     const pathname = usePathname();
 
-    return (<>
-        {crumbs.filter(c => {
-            if (c.link === '/' || c.link === '') return c;
-            if (pathname.includes(`${c.link}/`)) return c;
-        }).map(c => (<Link href={c.link} key={`${c.label}-breadcrumb`}>{c.label} / </Link>))}</>
+    return (
+        <div className="text-sm breadcrumbs">
+            <ul>
+                {crumbs.filter(c => {
+                    if (c.link === '/' || c.link === '') return c;
+                    if (pathname.includes(`${c.link}/`)) return c;
+                }).map(c => (<li><Link href={c.link} key={`${c.label}-breadcrumb`}>{c.label}</Link></li>))}
+            </ul>
+        </div>
     )
 }

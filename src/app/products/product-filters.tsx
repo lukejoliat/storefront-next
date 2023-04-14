@@ -5,6 +5,7 @@ import { useInput } from '@/utils/use-input';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from "react";
 import { PATHS } from "../page";
+import { __DEV__ } from '@/utils';
 
 export enum Filters {
     NAME = 'name',
@@ -33,7 +34,6 @@ export const ProductFilters = () => {
         })}`)
     }
 
-
     return (
         <form>
             <ul>
@@ -52,10 +52,14 @@ export const ProductFilters = () => {
                     <ProductFilterInput {...priceTo} name={Filters.PRICE_TO} />
                 </li>
             </ul>
-            <button type="button" onClick={handleSubmit}>Filter</button>
-            <button type="button" onClick={() => router.push(`${PATHS.PRODUCTS}`)}>Clear</button>
+            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Filter</button>
+            <button type="button" className="btn btn-primary" onClick={() => router.push(`${PATHS.PRODUCTS}`)}>Clear</button>
         </form>
     )
+}
+
+if (__DEV__) {
+    ProductFilters.displayName = 'ProductFilters'
 }
 
 // TODO: evaluate the usefullness of this
@@ -64,7 +68,7 @@ const ProductFilterInput = ({ name, type = 'text', value, onChange }: { name: st
     return (
         <>
             {/* <label htmlFor="type">{label}</label> */}
-            <input type={type} id={name} name={name} value={value} onChange={onChange} className='text-rose-500' />
+            <input type={type} id={name} name={name} value={value} onChange={onChange} className="input w-full max-w-xs" />
         </>
     )
 }
