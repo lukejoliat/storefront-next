@@ -3,6 +3,7 @@ import { Main } from "@/components/main";
 import { SideBar } from "@/components/sidebar";
 import { Product } from "../product-list";
 import { ENDPOINT as PRODUCTS } from "../api/route";
+import { ProductDetail } from "./product-detail";
 
 type Params = { id: string }
 
@@ -17,11 +18,7 @@ export default async function Page({ params }: { params: Params }) {
                 Photos
             </SideBar>
             <Main>
-                <div>
-                    <h3>Title: {product.title}</h3>
-                    <p>Description: {product.description}</p>
-                    <p>Price: {product.price}</p>
-                </div>
+                <ProductDetail product={product} />
             </Main>
         </Container>
     )

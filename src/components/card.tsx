@@ -10,14 +10,6 @@ type Props = {
     className?: string;
 }
 
-// <div>
-
-//     <Link href={`/products/${p.id}`}>{p.title}</Link>
-//     <p>
-//         {p.description}
-//     </p>
-// </div>
-
 export const Card: FC<Props> = ({ className, title, description, photo, link }) => {
     return (
         <div className={clsx("card w-96 bg-base-100 shadow-xl", className)}>

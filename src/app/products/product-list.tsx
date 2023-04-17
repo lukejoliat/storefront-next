@@ -1,7 +1,4 @@
-import Link from "next/link";
 import { ENDPOINT as PRODUCTS } from "./api/route";
-import { Card } from "@/components/card";
-import { PATHS } from "../page";
 import { ProductCard } from "./product-card";
 
 export type Product = {
@@ -26,9 +23,21 @@ export const ProductList = async ({ searchParams }: { searchParams: Record<strin
 
     const filteredProducts = products.filter(p => {
         // TODO: make this dynamic
-        return p.title.includes(searchParams.name || '')
-            && p.price >= parseInt(searchParams[Filters.PRICE_FROM] || '0')
-            && p.price <= parseInt(searchParams[Filters.PRICE_TO] || '100000000')
+        // return p.title.includes(searchParams[Filters.NAME] || '')
+        //     && p.price >= parseInt(searchParams[Filters.PRICE_FROM] || '0')
+        //     && p.price <= parseInt(searchParams[Filters.PRICE_TO] || '100000000')
+
+        // alternative:
+        if (searchParams[Filters.PRICE_FROM] && p.price >= parseInt(searchParams[Filters.PRICE_FROM] as string)) {
+            return false;
+        }
+        if (searchParams[Filters.PRICE_TO] && p.price <= parseInt(searchParams[Filters.PRICE_TO] as string)) {
+            return false;
+        }
+        if (searchParams[Filters.NAME] && !p.title.includes(searchParams[Filters.NAME] as string)) {
+            return false;
+        }
+        return true;
     })
 
     return (

@@ -39,20 +39,16 @@ export const ProductFilters = () => {
             <ul>
                 {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
                 <li>
-                    <label htmlFor="name">Name</label>
-                    <ProductFilterInput {...name} name={Filters.NAME} />
-
+                    <ProductFilterInput {...name} name={Filters.NAME} label='Name' />
                 </li>
                 <li>
-                    <label htmlFor="price-from">Price From</label>
-                    <ProductFilterInput {...priceFrom} name={Filters.PRICE_FROM} />
+                    <ProductFilterInput {...priceFrom} name={Filters.PRICE_FROM} label='Price From' />
                 </li>
                 <li>
-                    <label htmlFor="price-to">Price To</label>
-                    <ProductFilterInput {...priceTo} name={Filters.PRICE_TO} />
+                    <ProductFilterInput {...priceTo} name={Filters.PRICE_TO} label="Price To" />
                 </li>
             </ul>
-            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Filter</button>
+            <button type="button" className="btn btn-primary mx-2" onClick={handleSubmit}>Filter</button>
             <button type="button" className="btn btn-primary" onClick={() => router.push(`${PATHS.PRODUCTS}`)}>Clear</button>
         </form>
     )
@@ -63,12 +59,16 @@ if (__DEV__) {
 }
 
 // TODO: evaluate the usefullness of this
-const ProductFilterInput = ({ name, type = 'text', value, onChange }: { name: string, type: string, value: string | number | undefined, onChange: (event: any) => void }) => {
+const ProductFilterInput = ({ name, type = 'text', value, onChange, label }: { name: string, type: string, value: string | number | undefined, onChange: (event: any) => void, label: string }) => {
 
     return (
         <>
-            {/* <label htmlFor="type">{label}</label> */}
-            <input type={type} id={name} name={name} value={value} onChange={onChange} className="input w-full max-w-xs" />
+            <div className="form-control py-2">
+                <label className="input-group input-group-md">
+                    <span>{label}</span>
+                    <input type={type} placeholder="Type here" id={name} name={name} value={value} onChange={onChange} className="w-full input input-bordered input-md" />
+                </label>
+            </div>
         </>
     )
 }
