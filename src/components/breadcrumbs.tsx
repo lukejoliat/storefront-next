@@ -22,8 +22,8 @@ export const Breadcrumbs: FC<Props> = ({ crumbs = [] }) => {
                 {crumbs.filter(c => {
                     if (c.link === '/' || c.link === '') return c;
                     if (pathname.includes(`${c.link}/`)) return c;
-                }).map(c => (<li><Link href={c.link} key={`${c.label}-breadcrumb`}>{c.label}</Link></li>))}
+                }).map(c => (<li key={`${c.label}-breadcrumb`}><Link href={c.link} >{c.label}</Link></li>))}
             </ul>
-        </div>
+        </div >
     )
 }

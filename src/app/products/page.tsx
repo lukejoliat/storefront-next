@@ -6,6 +6,8 @@ import { ProductFilters } from "./product-filters";
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { ClientComponent } from "./client-component";
+import { ServerComponent } from "./server-component";
 
 export enum Filters {
     NAME = "name",
@@ -28,6 +30,9 @@ export default async function Page({
                     {/* @ts-expect-error Async Server Component */}
                     <ProductList searchParams={searchParams} />
                 </Suspense>
+                <ClientComponent>
+                    <ServerComponent />
+                </ClientComponent>
             </Main>
         </Container>
     );
