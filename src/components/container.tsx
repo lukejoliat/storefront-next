@@ -1,15 +1,16 @@
-import clsx from "clsx"
-import { FC, ReactNode } from "react"
+import clsx from "clsx";
+import { FC, ReactNode } from "react";
 
 type Props = {
-    children: ReactNode;
-    layout: 'horizontal' | 'vertical'
-}
+  children: ReactNode;
+  layout: "horizontal" | "vertical";
+  className?: string | undefined;
+};
 
-export const Container: FC<Props> = ({ children, layout }) => {
-    return (
-        <div className={clsx('p-4', { 'flex': layout === 'horizontal' })}>
-            {children}
-        </div>
-    )
-}
+export const Container: FC<Props> = ({ children, layout, className }) => {
+  return (
+    <div className={clsx("p-4", { flex: layout === "horizontal" }, className)}>
+      {children}
+    </div>
+  );
+};

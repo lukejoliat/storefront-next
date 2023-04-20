@@ -1,22 +1,47 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from "next/image";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const PATHS = {
-  HOME: '/',
-  PRODUCTS: '/products',
-  PRODUCT: '/products/:id',
-  NEW_ARRIVALS: '/new-arrivals'
-} as const
+  HOME: "/",
+  PRODUCTS: "/products",
+  PRODUCT: "/products/:id",
+  NEW_ARRIVALS: "/new-arrivals",
+} as const;
 
 export default function Home() {
-  return (<>
-    <div className="w-full font-mono text-sm">
-      <p className="flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-        This is the Home Page.
-      </p>
-    </div>
-  </>
-  )
+  return (
+    <>
+      <div
+        className="hero h-60"
+        style={{
+          backgroundImage: "url(/hero.webp)",
+        }}
+      />
+      <div className="hero bg-base-200 my-6">
+        <div className="hero-content flex-col lg:flex-row">
+          <Image
+            src="/bumblebee.webp"
+            className="max-w-sm rounded-lg"
+            alt="bumblebee"
+            width={500}
+            height={500}
+          />
+          <div className="text-center">
+            <h1 className="text-5xl font-bold">
+              {" "}
+              Transformers - More than meets the eye!
+            </h1>
+            <p className="py-6">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <button className="btn btn-primary">Shop Now</button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
