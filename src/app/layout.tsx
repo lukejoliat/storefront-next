@@ -1,6 +1,8 @@
 import { Footer } from "@/components/footer";
 import { Nav } from "../components/nav";
 import "./globals.css";
+import { Drawer } from "@/components/drawer";
+import { ShoppingCart } from "@/components/shopping-cart";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,9 +17,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav />
-        <main className="px-10">{children}</main>
-        <Footer />
+        <Drawer>
+          <Drawer.Content>
+            <Nav />
+            <main className="px-10">{children}</main>
+            <Footer />
+          </Drawer.Content>
+          <Drawer.Side>
+            <ShoppingCart />
+          </Drawer.Side>
+        </Drawer>
       </body>
     </html>
   );

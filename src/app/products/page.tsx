@@ -10,30 +10,29 @@ import { ClientComponent } from "./client-component";
 import { ServerComponent } from "./server-component";
 
 export enum Filters {
-    NAME = "name",
-    PRICE_FROM = "price-from",
-    PRICE_TO = "price-to",
+  NAME = "name",
+  PRICE_FROM = "price-from",
+  PRICE_TO = "price-to",
 }
 
 export default async function Page({
-    searchParams,
+  searchParams,
 }: {
-    searchParams: ReadonlyURLSearchParams;
+  searchParams: ReadonlyURLSearchParams;
 }) {
-    return (
-        <Container layout="horizontal">
-            <SideBar>
-                <ProductFilters />
-            </SideBar>
-            <Main>
-                <Suspense fallback={<Loading />}>
-                    {/* @ts-expect-error Async Server Component */}
-                    <ProductList searchParams={searchParams} />
-                </Suspense>
-                <ClientComponent>
-                    <ServerComponent />
-                </ClientComponent>
-            </Main>
-        </Container>
-    );
+  return (
+    <Container layout="horizontal">
+      <SideBar>
+        <Suspense fallback={<Loading />}>
+          <ProductFilters />
+        </Suspense>
+      </SideBar>
+      <Main>
+        <Suspense fallback={<Loading />}>
+          {/* @ts-expect-error Async Server Component */}
+          <ProductList searchParams={searchParams} />
+        </Suspense>
+      </Main>
+    </Container>
+  );
 }
