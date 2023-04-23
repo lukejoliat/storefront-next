@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import { Product } from "../product-list";
+import { AddToCart } from "./add-to-cart";
 
 type Props = {
   product: Product;
@@ -37,7 +38,7 @@ export const ProductDetail: FC<Props> = ({ product }) => {
               </div>
             </div>
           </div>
-          <button className="btn btn-primary mt-6">Add to Cart</button>
+          <AddToCart product={product} />
         </div>
       </div>
     </div>

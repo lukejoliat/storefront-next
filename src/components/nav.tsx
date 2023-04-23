@@ -6,6 +6,7 @@ import logo from "../../public/autobot.png";
 import { Search } from "./search";
 import { FaShoppingCart } from "react-icons/fa";
 import { DrawerButton } from "./drawer-button";
+import { CartButton } from "./cart-button";
 
 export function Nav() {
   return (
@@ -27,9 +28,7 @@ export function Nav() {
       </ul>
       <Search />
       <div className="h-full ml-4 cursor-pointer">
-        <DrawerButton>
-          <FaShoppingCart height={100} />
-        </DrawerButton>
+        <CartButton />
       </div>
     </nav>
   );

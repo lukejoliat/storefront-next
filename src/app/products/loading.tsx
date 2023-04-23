@@ -4,12 +4,20 @@ export default function Loading() {
       {/* TODO: refactor to use component for product list item */}
 
       {/* <ProductCard key={p.title} product={p} /> */}
-      <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800"></div>
-      <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800"></div>
-      <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800"></div>
-      <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800"></div>
-      <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800"></div>
-      <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800"></div>
+
+      <PlaceHolderCard />
+      <PlaceHolderCard />
+      <PlaceHolderCard />
+      <PlaceHolderCard />
+      <PlaceHolderCard />
+      <PlaceHolderCard />
+      <PlaceHolderCard />
     </div>
   );
 }
+
+const PlaceHolderCard = () => {
+  return (
+    <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800 animate-pulse"></div>
+  );
+};
