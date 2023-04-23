@@ -8,7 +8,7 @@ export const AddToCart = ({ product }: { product: Product }) => {
   const context = useContext(CartContext);
 
   const handleAddClick = () => {
-    context.setItems((items: Product[]) => [...items, product]);
+    context.addItem(product);
   };
 
   return (

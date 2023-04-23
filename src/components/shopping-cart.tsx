@@ -13,34 +13,37 @@ const format = new Intl.NumberFormat("en-us", {
 export const ShoppingCart = () => {
   const context = useContext(CartContext);
 
-  const handleRemoveItem = (removeIndex: number) => {
-    context.setItems((items: Product[]) => {
-      return items.filter((i, index) => index !== removeIndex);
-    });
+  const handleRemoveItem = (item?: Product) => {
+    context.removeItem(item);
   };
 
   const disabled = useMemo(
-    () => !context.items || !context.items.length,
+    () => !context.items || !context.items.size,
     [context]
   );
 
-  const total = useMemo(
-    () =>
-      context.items.reduce((acc, i) => {
-        return (acc += i.price);
-      }, 0),
-    [context]
-  );
+  const total = useMemo(() => {
+    let total = 0;
+    context.items.forEach((item, i) => {
+      total = item.product.price * item.quantity;
+    });
+    return total;
+  }, [context]);
 
   return (
     <div className="flex flex-col">
       <h1 className="font-bold text-2xl">Shopping Cart</h1>
       <ul className="menu">
-        {context.items.map((i, index) => (
-          <li key={i.id} className="flex">
+        {[...context.items.keys()].map((i, index) => (
+          <li key={i} className="flex">
             <span>
-              {i.title}
-              <FaTrash onClick={() => handleRemoveItem(index)} />
+              {context?.items?.get(i)?.product?.title}
+              <span>Quantity: {context?.items?.get(i)?.quantity}</span>
+              <FaTrash
+                onClick={() =>
+                  handleRemoveItem(context?.items?.get(i)?.product)
+                }
+              />
             </span>
           </li>
         ))}

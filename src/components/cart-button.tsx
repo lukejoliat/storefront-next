@@ -10,9 +10,9 @@ export const CartButton = () => {
   return (
     <DrawerButton>
       <div className="relative">
-        {items.length > 0 && (
+        {items.size > 0 && (
           <div className="h-4 w-4 bg-red-600 rounded-full absolute bottom-2 left-3 text-white flex items-center justify-center text-center">
-            {items.length}
+            {items.size}
           </div>
         )}
         <FaShoppingCart height={100} />
