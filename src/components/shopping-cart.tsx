@@ -2,54 +2,43 @@
 
 import { Product } from "@/app/products/product-list";
 import { CartContext } from "@/context/cart-context";
+import { formatter } from "@/utils/formatter";
 import { useContext, useMemo } from "react";
 import { FaTrash } from "react-icons/fa";
 
-const format = new Intl.NumberFormat("en-us", {
-  style: "currency",
-  currency: "USD",
-});
-
 export const ShoppingCart = () => {
-  const context = useContext(CartContext);
+  const { items, removeItem } = useContext(CartContext);
 
   const handleRemoveItem = (item?: Product) => {
-    context.removeItem(item);
+    if (item) removeItem(item);
   };
 
-  const disabled = useMemo(
-    () => !context.items || !context.items.size,
-    [context]
-  );
+  const disabled = useMemo(() => !items || !items.size, [items]);
 
   const total = useMemo(() => {
     let total = 0;
-    context.items.forEach((item, i) => {
-      total = item.product.price * item.quantity;
+    items.forEach((item, i) => {
+      total += item.product.price * item.quantity;
     });
     return total;
-  }, [context]);
+  }, [items]);
 
   return (
     <div className="flex flex-col">
       <h1 className="font-bold text-2xl">Shopping Cart</h1>
       <ul className="menu">
-        {[...context.items.keys()].map((i, index) => (
-          <li key={i} className="flex">
+        {[...items.entries()].map(([key, item]) => (
+          <li key={key} className="flex">
             <span>
-              {context?.items?.get(i)?.product?.title}
-              <span>Quantity: {context?.items?.get(i)?.quantity}</span>
-              <FaTrash
-                onClick={() =>
-                  handleRemoveItem(context?.items?.get(i)?.product)
-                }
-              />
+              {item.product?.title}
+              {item.quantity > 1 && <span>x{item.quantity}</span>}
+              <FaTrash onClick={() => handleRemoveItem(item.product)} />
             </span>
           </li>
         ))}
       </ul>
-      <div className="divider">yo</div>
-      <div>Total: {format.format(total)}</div>
+      <div className="divider"></div>
+      <div>Total: {formatter.USD.format(total)}</div>
       <button className="btn btn-primary mt-6" disabled={disabled}>
         Checkout
       </button>

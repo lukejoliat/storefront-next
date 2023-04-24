@@ -21,7 +21,7 @@ export const ProductDetail: FC<Props> = ({ product }) => {
         <div className="self-start md:p-6">
           <h1 className="text-5xl font-bold">{product.title}</h1>
           <p className="py-6">{product.description}</p>
-          <div className="stats bg-primary text-primary-content">
+          <div className="stats bg-primary text-primary-content block md:grid">
             <div className="stat">
               <div className="stat-title">Price</div>
               <div className="stat-value">$89,400</div>

@@ -11,8 +11,8 @@ type Item = {
 
 type Cart = {
   items: Map<string, Item>;
-  addItem: any;
-  removeItem: any;
+  addItem: (item: Product) => void;
+  removeItem: (item: Product) => void;
 };
 
 export const CartContext = createContext<Cart>({
