@@ -13,7 +13,7 @@ export const products: Product[] = [
     description: "Leader of the decepticons.",
     price: 50.0,
     photo: "/megatron.jpeg",
-    photos: [],
+    photos: ["/megatron.jpeg", "/meg-1.webp", "/meg-2.webp"],
   },
   {
     id: "456",
@@ -22,7 +22,7 @@ export const products: Product[] = [
       "Leader of the Autobots. This Transformers Optimus Prime action figure converts from robot to Transformers truck mode",
     price: 55.0,
     photo: "/optimus.jpeg",
-    photos: [],
+    photos: ["/optimus.jpeg", "/opt-2.webp", "/opt-1.webp"],
   },
 ];
 

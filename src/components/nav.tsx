@@ -1,12 +1,9 @@
-import React from "react";
-import { NavLink } from "./nav-link";
 import { PATHS } from "@/app/page";
 import Image from "next/image";
 import logo from "../../public/autobot.png";
-import { Search } from "./search";
-import { FaShoppingCart } from "react-icons/fa";
-import { DrawerButton } from "./drawer-button";
 import { CartButton } from "./cart-button";
+import { NavLink } from "./nav-link";
+import { Search } from "./search";
 
 export function Nav() {
   return (
@@ -27,7 +24,7 @@ export function Nav() {
         </li>
       </ul>
       <Search />
-      <div className="h-full ml-4 cursor-pointer">
+      <div className="h-full ml-4 cursor-pointer flex items-center">
         <CartButton />
       </div>
     </nav>

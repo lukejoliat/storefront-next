@@ -20,9 +20,9 @@ export default function RootLayout({
       <body>
         <CartProvider>
           <Drawer>
-            <Drawer.Content>
+            <Drawer.Content className="flex flex-col">
               <Nav />
-              <main className="px-10">{children}</main>
+              <main className="px-10 flex-1">{children}</main>
               <Footer />
             </Drawer.Content>
             <Drawer.Side>
