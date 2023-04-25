@@ -17,14 +17,7 @@ export const ProductList = async ({
   searchParams: Record<string, string | undefined>;
 }) => {
   // TODO: refactor for a method that returns basepath
-  const products = (await fetch(PRODUCTS, {
-    // next: {
-    //   revalidate: 10,
-    // },
-  }).then((res) => {
-    console.log("fetching...");
-    return res.json();
-  })) as Product[];
+  const products = (await fetch(PRODUCTS).then((res) => res.json())) as Product[];
 
   const filteredProducts = products.filter((p) => {
     // TODO: make this dynamic
@@ -56,7 +49,7 @@ export const ProductList = async ({
 
   return (
     <>
-      <div className="flex">
+      <div className="flex flex-wrap">
         {/* TODO: refactor to use component for product list item */}
         {filteredProducts.map((p) => (
           <ProductCard key={p.title} product={p} />

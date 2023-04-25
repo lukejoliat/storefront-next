@@ -1,10 +1,7 @@
 import { Container } from "@/components/container";
-import { Main } from "@/components/main";
-import { SideBar } from "@/components/sidebar";
-import { Product } from "../product-list";
 import { ENDPOINT as PRODUCTS } from "../api/route";
+import { Product } from "../product-list";
 import { ProductDetail } from "./product-detail";
-import Image from "next/image";
 
 type Params = { id: string };
 

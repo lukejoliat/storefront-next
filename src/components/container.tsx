@@ -9,7 +9,7 @@ type Props = {
 
 export const Container: FC<Props> = ({ children, layout, className }) => {
   return (
-    <div className={clsx("p-4", { flex: layout === "horizontal" }, className)}>
+    <div className={clsx("p-4 flex-col md:flex-row", { flex: layout === "horizontal" }, className)}>
       {children}
     </div>
   );
