@@ -1,8 +1,16 @@
+import clsx from "clsx"
 import Image from "next/image"
 
-export const ProductPhotos = ({ handleClick, photos }: any) => {
+type Props = {
+    handleClick: (p: string) => void;
+    photos: string[];
+    direction?: 'vertical' | 'horizontal';
+    className?: string;
+}
+
+export const ProductPhotos = ({ handleClick, photos, direction = 'vertical', className }: Props) => {
     return (
-        <div className="flex flex-col p-3">
+        <div className={clsx('flex p-3', className, direction === 'horizontal' ? 'flex-row' : 'flex-col')}>
             {
                 photos.map((p: string, i: number) => {
                     return (

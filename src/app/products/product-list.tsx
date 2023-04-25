@@ -40,21 +40,30 @@ export const ProductList = async ({
     }
     if (
       searchParams[Filters.NAME] &&
-      !p.title.includes(searchParams[Filters.NAME] as string)
+      !p.title.toLowerCase().includes(searchParams[Filters.NAME] as string)
     ) {
       return false;
     }
     return true;
   });
 
-  return (
-    <>
-      <div className="flex flex-wrap">
-        {/* TODO: refactor to use component for product list item */}
-        {filteredProducts.map((p) => (
-          <ProductCard key={p.title} product={p} />
-        ))}
+  if (!filteredProducts || filteredProducts.length <= 0) {
+    return (
+      <div className="alert alert-error shadow-lg mt-2">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>No results. Clear Filters.</span>
+        </div>
       </div>
-    </>
+    )
+  }
+
+  return (
+    <div className="flex flex-wrap">
+      {/* TODO: refactor to use component for product list item */}
+      {filteredProducts.map((p) => (
+        <ProductCard key={p.title} product={p} />
+      ))}
+    </div>
   );
 };

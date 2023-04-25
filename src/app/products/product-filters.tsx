@@ -92,21 +92,19 @@ const ProductFilterInput = ({
   label: string;
 }) => {
   return (
-    <>
-      <div className="form-control py-2">
-        <label className="input-group input-group-md">
-          <span>{label}</span>
-          <input
-            type={type}
-            placeholder="Type here"
-            id={name}
-            name={name}
-            value={value}
-            onChange={onChange}
-            className="w-full input input-bordered input-md"
-          />
-        </label>
-      </div>
-    </>
+    <div className="form-control py-2">
+      <label className="input-group input-group-md">
+        <span>{label}</span>
+        <input
+          type={type}
+          placeholder="Type here"
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          className="w-full input input-bordered input-md"
+        />
+      </label>
+    </div>
   );
 };

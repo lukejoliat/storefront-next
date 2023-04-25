@@ -1,8 +1,6 @@
+import { basePath } from "@/utils/base-path";
 import { NextResponse } from "next/server";
 import { Product } from "../product-list";
-import { randomUUID } from "crypto";
-import { log } from "console";
-import { basePath } from "@/utils/base-path";
 
 export const ENDPOINT = `${basePath()}/products/api` as const;
 
@@ -31,6 +29,11 @@ export async function GET(request: Request) {
   const id = searchParams.get("id");
   await new Promise((resolve) => setTimeout(resolve, Number(2000)));
 
-  if (id) return NextResponse.json(products.find((p) => p.id === id) || {});
+  if (id) {
+    const product = NextResponse.json(products.find((p) => p.id === id));
+    if (product) return product
+    else throw new Error('Could not find product')
+  }
+
   return NextResponse.json(products);
 }

@@ -1,15 +1,20 @@
+"use client"
+
 import { PATHS } from "@/app/page";
 import Image from "next/image";
 import logo from "../../public/autobot.png";
 import { CartButton } from "./cart-button";
 import { NavLink } from "./nav-link";
 import { Search } from "./search";
+import { useMediaQuery } from "@/utils/use-media-query";
 
 export function Nav() {
+  const isMobile = useMediaQuery(600, { less: true })
+
   return (
     <nav className="p-10 flex items-center">
       <Image src={logo} alt="logo" width={50} />
-      <ul className="menu menu-horizontal bg-base-100 rounded-box ml-6">
+      {!isMobile && <ul className="menu menu-horizontal bg-base-100 rounded-box ml-6">
         <li>
           <NavLink href={PATHS.HOME}>Home</NavLink>
         </li>
@@ -22,7 +27,7 @@ export function Nav() {
         <li>
           <NavLink href={PATHS.NEW_ARRIVALS}>Featured</NavLink>
         </li>
-      </ul>
+      </ul>}
       <Search />
       <div className="h-full ml-4 cursor-pointer flex items-center">
         <CartButton />

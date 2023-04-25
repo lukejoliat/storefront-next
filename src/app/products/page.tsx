@@ -1,13 +1,11 @@
 import { Container } from "@/components/container";
 import { Main } from "@/components/main";
 import { SideBar } from "@/components/sidebar";
-import { ProductList } from "./product-list";
-import { ProductFilters } from "./product-filters";
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { ClientComponent } from "./client-component";
-import { ServerComponent } from "./server-component";
+import { ProductFilters } from "./product-filters";
+import { ProductList } from "./product-list";
 
 export enum Filters {
   NAME = "name",
