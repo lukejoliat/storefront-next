@@ -19,16 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartProvider>
-          <Drawer>
-            <Drawer.Content className="flex flex-col">
-              <Nav />
-              <main className="px-10 flex-1">{children}</main>
-              <Footer />
-            </Drawer.Content>
-            <Drawer.Side>
-              <ShoppingCart />
-            </Drawer.Side>
-          </Drawer>
+          <Drawer.Root>
+            <Nav />
+            <main className="px-10 flex-1">{children}</main>
+            <Footer />
+          </Drawer.Root>
         </CartProvider>
       </body>
     </html>

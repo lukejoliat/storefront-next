@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Props } from "next/script";
 import { FC, ReactNode } from "react";
+import { createPortal } from "react-dom";
 
 type DrawerProps = {
   children: ReactNode;
@@ -30,3 +31,27 @@ Drawer.Side = ({ children }: DrawerProps) => {
     </div>
   );
 };
+
+Drawer.Root = ({ children, className }: { children: ReactNode, className?: string }) => {
+  return (
+    <div className={clsx("drawer", className)}>
+      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <div className={clsx("drawer-content", className)}>{children}</div>;
+      <div className="drawer-side">
+        <label htmlFor="my-drawer" className="drawer-overlay"></label>
+        <div className="p-4 w-80 bg-base-100 text-base-content portal"></div>
+      </div>
+    </div>
+  )
+}
+
+Drawer.Portal = ({ children, isOpen = false }: { children: ReactNode, isOpen?: boolean | null }) => {
+  return (
+    <>
+      {isOpen ? createPortal(
+        <>{children}</>,
+        document.querySelector('.portal') || document.body
+      ) : null}
+    </>
+  )
+}
