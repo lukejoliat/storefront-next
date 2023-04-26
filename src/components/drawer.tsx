@@ -9,7 +9,7 @@ type DrawerProps = {
 
 export const Drawer = ({ children, className }: DrawerProps) => {
   return (
-    <div className={clsx('drawer', className)}>
+    <div className={clsx("drawer", className)}>
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       {children}
     </div>
@@ -18,7 +18,7 @@ export const Drawer = ({ children, className }: DrawerProps) => {
 
 // eslint-disable-next-line react/display-name
 Drawer.Content = ({ children, className }: DrawerProps) => {
-  return <div className={clsx('drawer-content', className)}>{children}</div>;
+  return <div className={clsx("drawer-content", className)}>{children}</div>;
 };
 
 // eslint-disable-next-line react/display-name

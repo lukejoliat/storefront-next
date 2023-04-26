@@ -94,7 +94,7 @@ const ProductFilterInput = ({
   return (
     <div className="form-control py-2">
       <label className="input-group input-group-md">
-        <span>{label}</span>
+        <span className="min-w-fit">{label}</span>
         <input
           type={type}
           placeholder="Type here"
