@@ -1,9 +1,7 @@
 import { Footer } from "@/components/footer";
+import { CartProvider } from "@/context/cart-context";
 import { Nav } from "../components/nav";
 import "./globals.css";
-import { Drawer } from "@/components/drawer";
-import { ShoppingCart } from "@/components/shopping-cart";
-import { CartProvider } from "@/context/cart-context";
 
 export const metadata = {
   title: "Create Next App",
@@ -19,11 +17,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartProvider>
-          <Drawer.Root>
-            <Nav />
-            <main className="px-10 flex-1">{children}</main>
-            <Footer />
-          </Drawer.Root>
+          <Nav />
+          <main className="px-10 flex-1">{children}</main>
+          <Footer />
         </CartProvider>
       </body>
     </html>
