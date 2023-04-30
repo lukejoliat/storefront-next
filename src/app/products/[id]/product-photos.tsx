@@ -10,23 +10,23 @@ type Props = {
 
 export const ProductPhotos = ({ handleClick, photos, direction = 'vertical', className }: Props) => {
     return (
-        <div className={clsx('flex p-3', className, direction === 'horizontal' ? 'flex-row' : 'flex-col')}>
+        <div className={clsx('flex mr-3 justify-center md:justify-normal', className)}>
             {
                 photos.map((p: string, i: number) => {
                     return (
-                        <div className="h-20 w-20 bg-slate-900 rounded-md my-2" key={`photo-${i}`}>
+                        <div className="bg-slate-900 rounded-md m-2 max-w-[90px] max-h-[90px]" key={`photo-${i}`}>
                             <Image
                                 src={p}
                                 alt="product 1"
                                 width={200}
                                 height={200}
                                 onClick={() => handleClick(p)}
-                                className="cursor-pointer"
+                                className="cursor-pointer rounded-lg h-full w-full object-cover"
                             />
                         </div>
                     )
                 })
             }
-        </div>
+        </div >
     )
 }
