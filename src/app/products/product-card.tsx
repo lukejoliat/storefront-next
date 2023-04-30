@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { PATHS } from "../page"
+import { PATHS } from "@/app/paths"
 import { Product } from "./product-list"
 import { Card } from "@/components/card"
 

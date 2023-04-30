@@ -1,6 +1,6 @@
 import { ENDPOINT as PRODUCTS } from "./api/route";
 import { ProductCard } from "./product-card";
-import { Filters } from "./page";
+import { Filters } from "./filters";
 
 export type Product = {
   id: string;

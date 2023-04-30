@@ -1,14 +1,4 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const PATHS = {
-  HOME: "/",
-  PRODUCTS: "/products",
-  PRODUCT: "/products/:id",
-  NEW_ARRIVALS: "/new-arrivals",
-} as const;
 
 export default function Home() {
   return (
@@ -19,7 +9,7 @@ export default function Home() {
           backgroundImage: "url(/hero.webp)",
         }}
       />
-      <div className="hero bg-base-200 my-6">
+      <div className="hero bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
           <Image
             src="/bumblebee.webp"
@@ -33,7 +23,7 @@ export default function Home() {
               {" "}
               Transformers - More than meets the eye!
             </h1>
-            <p className="py-6">
+            <p className="py-6 max-w-md m-auto">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.

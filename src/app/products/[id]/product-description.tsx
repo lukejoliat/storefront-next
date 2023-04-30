@@ -1,9 +1,10 @@
 type Props = {
     title: string;
     description: string;
+    price: string;
 }
 
-export const ProductDescription = ({ title, description }: Props) => {
+export const ProductDescription = ({ title, description, price }: Props) => {
     return (
         <div className="self-start md:p-6">
             <h1 className="text-5xl font-bold">{title}</h1>
@@ -11,7 +12,7 @@ export const ProductDescription = ({ title, description }: Props) => {
             <div className="stats bg-primary text-primary-content block md:grid">
                 <div className="stat">
                     <div className="stat-title">Price</div>
-                    <div className="stat-value">$89,400</div>
+                    <div className="stat-value">{price}</div>
                     <div className="stat-actions">
                         <button className="btn btn-sm btn-success">Add funds</button>
                     </div>
@@ -20,8 +21,7 @@ export const ProductDescription = ({ title, description }: Props) => {
                     <div className="stat-title">Reviews</div>
                     <div className="stat-value">⭐⭐⭐⭐⭐</div>
                     <div className="stat-actions">
-                        <button className="btn btn-sm">Withdrawal</button>
-                        <button className="btn btn-sm">deposit</button>
+                        <button className="btn btn-sm">See all reviews</button>
                     </div>
                 </div>
             </div>

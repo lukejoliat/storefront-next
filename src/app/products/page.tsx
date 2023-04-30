@@ -7,17 +7,12 @@ import Loading from "./loading";
 import { ProductFilters } from "./product-filters";
 import { ProductList } from "./product-list";
 
-export enum Filters {
-  NAME = "name",
-  PRICE_FROM = "price-from",
-  PRICE_TO = "price-to",
-}
-
 export default async function Page({
   searchParams,
 }: {
   searchParams: ReadonlyURLSearchParams;
 }) {
+
   return (
     <Container layout="horizontal">
       <SideBar>

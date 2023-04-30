@@ -28,7 +28,7 @@ export const Card: FC<Props> = ({
           <Link href={link}>{title}</Link>
           <div className="badge badge-secondary">NEW</div>
         </h2>
-        <p>{description}</p>
+        <p className="max-h-20 overflow-hidden">{description}</p>
         <div className="card-actions justify-end">
           <div className="badge badge-outline">Toys</div>
           <div className="badge badge-outline">Transformers</div>

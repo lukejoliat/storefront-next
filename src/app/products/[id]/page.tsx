@@ -16,7 +16,7 @@ export default async function Page({ params }: Props) {
     )) as Product;
 
     return (
-      <Container layout="horizontal" className="bg-base-200 my-6 rounded-md">
+      <Container layout="horizontal" className="bg-base-200 my-4 rounded-md">
         <ProductDetail product={product} />
       </Container>
     );

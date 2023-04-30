@@ -1,7 +1,7 @@
 export const Search = () => {
   return (
-    <div className="form-control">
-      <div className="input-group">
+    <div className="form-control flex-1">
+      <div className="input-group  justify-end">
         <input
           type="text"
           placeholder="Search…"

@@ -12,7 +12,7 @@ export const AddToCart = ({ product }: { product: Product }) => {
   };
 
   return (
-    <button className="btn btn-primary mt-6" onClick={handleAddClick}>
+    <button className="btn btn-primary inline-block" onClick={handleAddClick}>
       Add to Cart
     </button>
   );

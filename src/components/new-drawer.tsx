@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { ReactNode, createElement, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 function createPortalRoot() {
@@ -21,23 +21,22 @@ export const NewDrawer = ({
   setIsOpen: (params: any) => void;
   position?: "left" | "right";
 }) => {
-  const portalRootRef = useRef(
-    document.getElementById("drawer-root") || createPortalRoot()
-  );
+  const ref = useRef<Element | null>(null)
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
-    if (!document.getElementById("drawer-root")) {
-      document.body.append(portalRootRef.current);
-    }
-  }, []);
+    ref.current = createPortalRoot();
+    document.body.append(ref.current)
+    setMounted(true)
+  }, [])
 
   return (
     <>
-      {createPortal(
+      {(mounted && ref.current) && createPortal(
         <>
           <div
             className={clsx(
               "new-drawer z-20 fixed top-0 h-[100vh] bg-slate-500 text-white p-4 w-full max-w-sm transition-all duration-500 transform shadow-lg",
-              //   isOpen && position ? "translate-x-0" : "translate-x-[-100%]",
               {
                 "translate-x-0": isOpen,
                 "translate-x-[-100%]": !isOpen && position === "left",
@@ -56,7 +55,7 @@ export const NewDrawer = ({
             onClick={setIsOpen}
           />
         </>,
-        portalRootRef.current
+        ref.current
       )}
     </>
   );

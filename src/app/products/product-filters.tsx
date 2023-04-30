@@ -7,8 +7,8 @@ import { useMediaQuery } from "@/utils/use-media-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { IoMdFunnel } from "react-icons/io";
-import { PATHS } from "../page";
-import { Filters } from "./page";
+import { PATHS } from "@/app/paths";
+import { Filters } from "./filters";
 import { NewDrawer } from "@/components/new-drawer";
 import { useToggle } from "@/utils/use-toggle";
 
@@ -43,9 +43,44 @@ export const ProductFilters = () => {
     <>
       {isMobile ? (
         <>
-          <IoMdFunnel onClick={open.toggle} />
+          <IoMdFunnel onClick={open.toggle} className="cursor-pointer" />
           <NewDrawer isOpen={open.value} setIsOpen={open.toggle}>
-            Filters
+            <form>
+              <ul>
+                {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
+                <li>
+                  <ProductFilterInput {...name} name={Filters.NAME} label="Name" />
+                </li>
+                <li>
+                  <ProductFilterInput
+                    {...priceFrom}
+                    name={Filters.PRICE_FROM}
+                    label="Price From"
+                  />
+                </li>
+                <li>
+                  <ProductFilterInput
+                    {...priceTo}
+                    name={Filters.PRICE_TO}
+                    label="Price To"
+                  />
+                </li>
+              </ul>
+              <button
+                type="button"
+                className="btn btn-primary mx-2"
+                onClick={handleSubmit}
+              >
+                Filter
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => router.push(`${PATHS.PRODUCTS}`)}
+              >
+                Clear
+              </button>
+            </form>
           </NewDrawer>
         </>
       ) : (
