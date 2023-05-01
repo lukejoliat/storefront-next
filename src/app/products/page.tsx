@@ -4,21 +4,18 @@ import { SideBar } from "@/components/sidebar";
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { ProductFilters } from "./product-filters";
-import { ProductList } from "./product-list";
+import { ProductFilters } from "./components/product-filters";
+import { ProductList } from "./components/product-list";
 
 export default async function Page({
   searchParams,
 }: {
   searchParams: ReadonlyURLSearchParams;
 }) {
-
   return (
     <Container layout="horizontal">
       <SideBar>
-        <Suspense fallback={<Loading />}>
-          <ProductFilters />
-        </Suspense>
+        <ProductFilters />
       </SideBar>
       <Main>
         <Suspense fallback={<Loading />}>

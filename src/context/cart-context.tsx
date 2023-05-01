@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/app/products/product-list";
+import { Product } from "@/app/products/components/product-list";
 import { ReactNode, createContext, useState } from "react";
 
 type Item = {
@@ -11,7 +11,7 @@ type Item = {
 
 type Cart = {
   items: Map<string, Item>;
-  addItem: (item: Product) => void;
+  addItem: (item: Product, count: number) => void;
   removeItem: (item: Product) => void;
 };
 
@@ -42,20 +42,22 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const addItem = (item: Product) => {
+  const addItem = (item: Product, count: number) => {
     const oldItem = items.get(item.id);
     if (oldItem) {
       setItems(
         new Map(
           items.set(item.id, {
             ...oldItem,
-            quantity: oldItem.quantity + 1,
+            quantity: oldItem.quantity + count,
           })
         )
       );
     } else {
       setItems(
-        new Map(items.set(item.id, { id: item.id, product: item, quantity: 1 }))
+        new Map(
+          items.set(item.id, { id: item.id, product: item, quantity: count })
+        )
       );
     }
   };

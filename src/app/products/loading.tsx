@@ -1,3 +1,11 @@
+import {
+  Card,
+  CardActions,
+  CardBody,
+  CardImage,
+  CardTitle,
+} from "@/components/card";
+
 export default function Loading() {
   return (
     <div className="flex flex-wrap">
@@ -18,6 +26,18 @@ export default function Loading() {
 
 const PlaceHolderCard = () => {
   return (
-    <div className="p-2 w-96 h-[480px] m-2 rounded-lg bg-slate-800 animate-pulse"></div>
+    <Card className="m-2 w-64">
+      <CardImage>
+        <div className="w-full h-[250px] rounded-lg bg-slate-800 animate-pulse"></div>
+      </CardImage>
+      <CardBody>
+        <CardTitle>
+          <div className="w-[200px] h-6 rounded-lg bg-slate-800 animate-pulse"></div>
+        </CardTitle>
+        <CardActions align="left">
+          <div className="w-[200px] h-6 rounded-lg bg-slate-800 animate-pulse"></div>
+        </CardActions>
+      </CardBody>
+    </Card>
   );
 };

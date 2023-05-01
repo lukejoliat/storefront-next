@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { IoMdFunnel } from "react-icons/io";
 import { PATHS } from "@/app/paths";
-import { Filters } from "./filters";
+import { Filters } from "../types/filters";
 import { NewDrawer } from "@/components/new-drawer";
 import { useToggle } from "@/utils/use-toggle";
 
@@ -43,13 +43,22 @@ export const ProductFilters = () => {
     <>
       {isMobile ? (
         <>
-          <IoMdFunnel onClick={open.toggle} className="cursor-pointer" />
+          <button className="btn gap-2">
+            Filters
+            <div className="badge badge-primary" onClick={open.toggle}>
+              <IoMdFunnel className="cursor-pointer" />
+            </div>
+          </button>
           <NewDrawer isOpen={open.value} setIsOpen={open.toggle}>
             <form>
               <ul>
                 {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
                 <li>
-                  <ProductFilterInput {...name} name={Filters.NAME} label="Name" />
+                  <ProductFilterInput
+                    {...name}
+                    name={Filters.NAME}
+                    label="Name"
+                  />
                 </li>
                 <li>
                   <ProductFilterInput
@@ -107,14 +116,14 @@ export const ProductFilters = () => {
           </ul>
           <button
             type="button"
-            className="btn btn-primary mx-2"
+            className="btn btn-primary mb-4 w-full"
             onClick={handleSubmit}
           >
             Filter
           </button>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary w-full"
             onClick={() => router.push(`${PATHS.PRODUCTS}`)}
           >
             Clear
@@ -144,7 +153,7 @@ const ProductFilterInput = ({
   label: string;
 }) => {
   return (
-    <div className="form-control py-2">
+    <div className="form-control mb-4">
       <label className="input-group input-group-md">
         <span className="min-w-fit">{label}</span>
         <input

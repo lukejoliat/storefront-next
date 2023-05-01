@@ -16,10 +16,15 @@ export function Nav({ className }: { className?: string }) {
 
   return (
     <Container>
-      <nav className={clsx('flex items-center justify-between md:justify-normal', className)}>
-        <Image src={logo} alt="logo" width={50} />
+      <nav
+        className={clsx(
+          "flex items-center justify-between md:justify-normal",
+          className
+        )}
+      >
         {!isMobile ? (
           <>
+            <Image src={logo} alt="logo" width={50} />
             <ul className="menu menu-horizontal bg-base-100 rounded-box ml-6">
               <li>
                 <NavLink href={PATHS.HOME}>Home</NavLink>
@@ -37,9 +42,12 @@ export function Nav({ className }: { className?: string }) {
             <Search />
           </>
         ) : (
-          <div className="p-2">
-            <IoMdMenu />
-          </div>
+          <>
+            <div className="p-2">
+              <IoMdMenu width={70} height={"90px"} scale={20} />
+            </div>
+            <Image src={logo} alt="logo" width={50} />
+          </>
         )}
 
         <div className="h-full ml-4 cursor-pointer flex items-center justify-end">
