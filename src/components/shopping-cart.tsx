@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/app/products/product-list";
+import { Product } from "@/app/products/components/product-list";
 import { CartContext } from "@/context/cart-context";
 import { formatter } from "@/utils/formatter";
 import { useContext, useMemo } from "react";
