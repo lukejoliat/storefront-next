@@ -19,7 +19,7 @@ export default function Layout({
 
   return (
     <section>
-      <Breadcrumbs crumbs={crumbs} className="hidden md:block" />
+      <Breadcrumbs crumbs={crumbs} />
       {children}
     </section>
   );

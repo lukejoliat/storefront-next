@@ -3,7 +3,7 @@
 import { CartContext } from "@/context/cart-context";
 import { useContext, useMemo, useRef, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { NewDrawer } from "./new-drawer";
+import { Drawer } from "./drawer";
 import { ShoppingCart } from "./shopping-cart";
 
 export const CartButton = () => {
@@ -31,9 +31,9 @@ export const CartButton = () => {
         )}
         <FaShoppingCart onClick={handleCartClick} height={100} />
       </div>
-      <NewDrawer isOpen={isOpen} setIsOpen={handleCartClick} position="left">
+      <Drawer isOpen={isOpen} setIsOpen={handleCartClick} position="left">
         <ShoppingCart />
-      </NewDrawer>
+      </Drawer>
     </>
   );
 };

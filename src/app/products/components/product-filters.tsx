@@ -9,35 +9,12 @@ import { useCallback } from "react";
 import { IoMdFunnel } from "react-icons/io";
 import { PATHS } from "@/app/paths";
 import { Filters } from "../types/filters";
-import { NewDrawer } from "@/components/new-drawer";
+import { Drawer } from "@/components/drawer";
 import { useToggle } from "@/utils/use-toggle";
 
 export const ProductFilters = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const isMobile = useMediaQuery(600, { less: true });
-
-  // TODO: refactor to a form
-  const priceFrom = useInput(searchParams.get(Filters.PRICE_FROM) || undefined);
-  const priceTo = useInput(searchParams.get(Filters.PRICE_TO) || undefined);
-  const name = useInput(searchParams.get(Filters.NAME) || "");
   const open = useToggle();
-
-  const setQueryString = useCallback(
-    (values: Record<string, unknown>) =>
-      createQueryString(values, searchParams, { deleteNulls: true }),
-    [searchParams]
-  );
-
-  const handleSubmit = () => {
-    router.push(
-      `${PATHS.PRODUCTS}?${setQueryString({
-        [Filters.PRICE_FROM]: priceFrom.value,
-        [Filters.PRICE_TO]: priceTo.value,
-        [Filters.NAME]: name.value,
-      })}`
-    );
-  };
 
   return (
     <>
@@ -49,88 +26,77 @@ export const ProductFilters = () => {
               <IoMdFunnel className="cursor-pointer" />
             </div>
           </button>
-          <NewDrawer isOpen={open.value} setIsOpen={open.toggle}>
-            <form>
-              <ul>
-                {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
-                <li>
-                  <ProductFilterInput
-                    {...name}
-                    name={Filters.NAME}
-                    label="Name"
-                  />
-                </li>
-                <li>
-                  <ProductFilterInput
-                    {...priceFrom}
-                    name={Filters.PRICE_FROM}
-                    label="Price From"
-                  />
-                </li>
-                <li>
-                  <ProductFilterInput
-                    {...priceTo}
-                    name={Filters.PRICE_TO}
-                    label="Price To"
-                  />
-                </li>
-              </ul>
-              <button
-                type="button"
-                className="btn btn-primary mx-2"
-                onClick={handleSubmit}
-              >
-                Filter
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => router.push(`${PATHS.PRODUCTS}`)}
-              >
-                Clear
-              </button>
-            </form>
-          </NewDrawer>
+          <Drawer isOpen={open.value} setIsOpen={open.toggle}>
+            <FilterForm />
+          </Drawer>
         </>
       ) : (
-        <form>
-          <ul>
-            {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
-            <li>
-              <ProductFilterInput {...name} name={Filters.NAME} label="Name" />
-            </li>
-            <li>
-              <ProductFilterInput
-                {...priceFrom}
-                name={Filters.PRICE_FROM}
-                label="Price From"
-              />
-            </li>
-            <li>
-              <ProductFilterInput
-                {...priceTo}
-                name={Filters.PRICE_TO}
-                label="Price To"
-              />
-            </li>
-          </ul>
-          <button
-            type="button"
-            className="btn btn-primary mb-4 w-full"
-            onClick={handleSubmit}
-          >
-            Filter
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary w-full"
-            onClick={() => router.push(`${PATHS.PRODUCTS}`)}
-          >
-            Clear
-          </button>
-        </form>
+        <FilterForm />
       )}
     </>
+  );
+};
+
+const FilterForm = () => {
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+
+  const setQueryString = useCallback(
+    (values: Record<string, unknown>) =>
+      createQueryString(values, searchParams, { deleteNulls: true }),
+    [searchParams]
+  );
+  const priceFrom = useInput(searchParams.get(Filters.PRICE_FROM) || undefined);
+  const priceTo = useInput(searchParams.get(Filters.PRICE_TO) || undefined);
+  const name = useInput(searchParams.get(Filters.NAME) || "");
+
+  const handleSubmit = () => {
+    router.push(
+      `${PATHS.PRODUCTS}?${setQueryString({
+        [Filters.PRICE_FROM]: priceFrom.value,
+        [Filters.PRICE_TO]: priceTo.value,
+        [Filters.NAME]: name.value,
+      })}`
+    );
+  };
+  return (
+    <form>
+      <ul>
+        {/* TODO: refactor form to be dynamic? refactor inputs to be a custom component */}
+        <li>
+          <ProductFilterInput {...name} name={Filters.NAME} label="Name" />
+        </li>
+        <li>
+          <ProductFilterInput
+            {...priceFrom}
+            name={Filters.PRICE_FROM}
+            label="Price From"
+          />
+        </li>
+        <li>
+          <ProductFilterInput
+            {...priceTo}
+            name={Filters.PRICE_TO}
+            label="Price To"
+          />
+        </li>
+      </ul>
+      <button
+        type="button"
+        className="btn btn-primary mx-2"
+        onClick={handleSubmit}
+      >
+        Filter
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => router.push(`${PATHS.PRODUCTS}`)}
+      >
+        Clear
+      </button>
+    </form>
   );
 };
 

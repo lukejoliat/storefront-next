@@ -21,7 +21,7 @@ export const Breadcrumbs: FC<Props> = ({ crumbs = [], className }) => {
 
   return (
     <Container>
-      <div className={clsx("text-sm breadcrumbs", className)}>
+      <div className={clsx("text-sm breadcrumbs hidden md:block", className)}>
         <ul>
           {crumbs
             .filter((c) => {

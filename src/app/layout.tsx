@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <CartProvider>
           <Nav />
-          <main className="px-10 flex-1">{children}</main>
+          <main className="px-10">{children}</main>
           <Footer />
         </CartProvider>
       </body>

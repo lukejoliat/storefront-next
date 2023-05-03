@@ -20,7 +20,6 @@ export default function Home() {
           />
           <div className="text-center">
             <h1 className="text-5xl font-bold">
-              {" "}
               Transformers - More than meets the eye!
             </h1>
             <p className="py-6 max-w-md m-auto">
