@@ -8,7 +8,7 @@ import {
 
 export const PlaceHolderCard = () => {
   return (
-    <Card className="m-2 w-64">
+    <Card className="m-auto md:m-2 w-64">
       <CardImage>
         <div className="w-full h-[250px] rounded-lg bg-slate-800 animate-pulse"></div>
       </CardImage>

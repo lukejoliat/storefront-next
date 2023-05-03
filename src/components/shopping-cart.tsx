@@ -25,7 +25,6 @@ export const ShoppingCart = () => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="font-bold text-2xl">Shopping Cart</h1>
       <ul className="menu">
         {[...items.entries()].map(([key, item]) => (
           <li key={key} className="flex">

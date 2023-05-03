@@ -69,7 +69,7 @@ export const ProductList = async ({
   return (
     <div className="flex flex-wrap m-auto">
       {filteredProducts.map((p) => (
-        <ProductCard key={p.title} product={p} />
+        <ProductCard key={p.title} product={p} className="m-auto mb-2 md:m-2" />
       ))}
     </div>
   );

@@ -11,6 +11,7 @@ import { PATHS } from "@/app/paths";
 import { Filters } from "../types/filters";
 import { Drawer } from "@/components/drawer";
 import { useToggle } from "@/utils/use-toggle";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export const ProductFilters = () => {
   const isMobile = useMediaQuery(600, { less: true });
@@ -20,13 +21,21 @@ export const ProductFilters = () => {
     <>
       {isMobile ? (
         <>
-          <button className="btn gap-2">
+          <button className="btn gap-2 w-full ">
             Filters
             <div className="badge badge-primary" onClick={open.toggle}>
               <IoMdFunnel className="cursor-pointer" />
             </div>
           </button>
           <Drawer isOpen={open.value} setIsOpen={open.toggle}>
+            <div className="flex items-center mb-4">
+              <h1 className="text-2xl">Filters</h1>
+              <IoMdCloseCircle
+                className="ms-auto cursor-pointer"
+                size={30}
+                onClick={open.toggle}
+              />
+            </div>
             <FilterForm />
           </Drawer>
         </>

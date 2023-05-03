@@ -1,17 +1,17 @@
 "use client";
 
 import { CartContext } from "@/context/cart-context";
+import { useToggle } from "@/utils/use-toggle";
 import { useContext, useMemo, useRef, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
 import { Drawer } from "./drawer";
 import { ShoppingCart } from "./shopping-cart";
 
 export const CartButton = () => {
   const { items } = useContext(CartContext);
-  const [isOpen, setIsOpen] = useState(false);
-  const handleCartClick = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const open = useToggle();
+
   const cartCount = useMemo(() => {
     let count = 0;
     items.forEach((i) => {
@@ -29,9 +29,18 @@ export const CartButton = () => {
             {cartCount}
           </div>
         )}
-        <FaShoppingCart onClick={handleCartClick} height={100} />
+        <FaShoppingCart onClick={open.toggle} height={100} size={20} />
       </div>
-      <Drawer isOpen={isOpen} setIsOpen={handleCartClick} position="left">
+      <Drawer isOpen={open.value} setIsOpen={open.toggle} position="right">
+        <div className="flex items-center">
+          {/* <h1 className="text-2xl">Filters</h1> */}
+          <h1 className="font-bold text-2xl">Shopping Cart</h1>
+          <IoMdCloseCircle
+            className="ms-auto cursor-pointer"
+            size={30}
+            onClick={open.toggle}
+          />
+        </div>
         <ShoppingCart />
       </Drawer>
     </>

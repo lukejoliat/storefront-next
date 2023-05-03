@@ -44,7 +44,7 @@ export function Nav({ className }: { className?: string }) {
         ) : (
           <>
             <div className="p-2">
-              <IoMdMenu width={70} height={"90px"} scale={20} />
+              <IoMdMenu width={70} height={"90px"} size={30} />
             </div>
             <Image src={logo} alt="logo" width={50} />
           </>
