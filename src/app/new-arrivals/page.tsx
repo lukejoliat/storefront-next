@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { ClientComponent } from "../products/components/client-component";
+import { Example } from "./animated-comps";
 
 export default function Page() {
   return (
     <>
       <div>New Arrivals.</div>
       <ClientComponent>Client Component</ClientComponent>
+      <Example />
       <div className="m-auto max-w-2xl min-w-fit bg-slate-500 p-4 my-4">
         <Image
           src={"/megatron.jpeg"}
